@@ -1,0 +1,22 @@
+## Overview
+This portfolio demonstrates how I measured baseline network throughput and then applied Linux Traffic Control (tc) to simulate congestion and network impairment (rate limiting, delay/jitter, packet loss). Evidence includes iperf3 tests, ping results, and tc/qdisc configurations.
+
+## Tools Used
+- Ubuntu (UTM VMs)
+- iperf3 (throughput testing)
+- tc / qdisc (traffic shaping & impairment)
+- ping, ss/systemctl (verification)
+
+## Topology
+- LAN Server VM (iperf3 server)
+- LAN Client VM (iperf3 client)
+- NAT/bridged LAN segment within UTM
+
+## Evidence
+- Network 1: baseline → shaping → verify → rollback
+- Network 2: baseline → netem impairment → verify → rollback
+
+## Key Results (summary)
+- Baseline: multi-Gbps throughput in lab LAN
+- With controls: throughput reduced and latency increased as configured
+- Controls were reversible (tc qdisc del/replace) to restore baseline performance
